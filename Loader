@@ -1,0 +1,401 @@
+warn("Loading Script")
+local Services = {
+	TweenService = game:GetService("TweenService"),
+	Players = game:GetService("Players")
+}
+
+local Images = {
+	AnglerNormal = "rbxassetid://15887239658",
+	PinkieNormal = "rbxassetid://14758644530",
+	PandemoniumNormal = "rbxassetid://17277140870",
+	FrogerNormal = "rbxassetid://14000465682",
+	BlitzNormal = "rbxassetid://13201496259",
+	ChainsmokerNormal = "rbxassetid://4954301213"
+}
+
+local Player = Services.Players.LocalPlayer
+local Character = Player.Character
+
+local Hiding = false
+local HidingWithPandemonium = false
+local HidingWithAngler = false
+local HidingWithPinkie = false
+local HidingWithFroger = false
+local HidingWithBlitz = false
+local HidingWithChainsmoker = false
+
+local AnglerHasImage = false
+local PinkieHasImage = false
+local PandemoniumHasImage = false
+local FrogerHasImage = false
+local BlitzHasImage = false
+local ChainsmokerHasImage = false
+
+local CurrentHidingSpotPosition = Instance.new("Part")
+CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+CurrentHidingSpotPosition.Anchored = true
+CurrentHidingSpotPosition.Transparency = 1
+CurrentHidingSpotPosition.Size = Vector3.new(2, 2, 1)
+CurrentHidingSpotPosition.Parent = workspace
+
+if Character then
+	local HumRoot = Character:FindFirstChild("HumanoidRootPart")
+
+	if HumRoot then
+
+		while wait() do
+			warn("Doing")
+			if workspace:FindFirstChild("Angler") then
+				
+				local Angler = workspace:FindFirstChild("Angler")
+				local Distance = (HumRoot.Position - Angler.Position).Magnitude
+				if Distance <= 150 then
+					if Hiding == false then
+						Hiding = true
+						CurrentHidingSpotPosition.CFrame = HumRoot.CFrame
+						
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,150,0))
+						wait(0.1)
+						HumRoot.Anchored = true
+					end
+				else
+					local Distance2 = (CurrentHidingSpotPosition.Position - Angler.Position).Magnitude
+					if Distance2 >= 150 then
+						if Hiding == true then
+							Hiding = false
+
+							HumRoot.Anchored = false
+							wait(0.1)
+							CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+							Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						end
+					end
+				end
+				
+				if AnglerHasImage == false then
+					AnglerHasImage = true
+					
+					local Bil = Instance.new("BillboardGui")
+					Bil.Parent = Angler
+					Bil.Size = UDim2.new(30,0,30,0)
+					Bil.ResetOnSpawn = true
+					Bil.AlwaysOnTop = true
+					Bil.MaxDistance = math.huge
+					
+					local image = Instance.new("ImageLabel")
+					image.Parent = Bil
+					image.Size = UDim2.new(1,0,1,0)
+					image.Image = Images.AnglerNormal
+					image.BorderSizePixel = 0
+				end
+				
+			else
+				if Hiding == true then
+					if HidingWithAngler == true then
+						Hiding = false
+
+						HumRoot.Anchored = false
+						wait(0.1)
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						AnglerHasImage = false
+					end
+				end
+			end
+			
+			if workspace:FindFirstChild("Pinkie") then
+
+				local Pinkie = workspace:FindFirstChild("Pinkie")
+				local Distance = (HumRoot.Position - Pinkie.Position).Magnitude
+				if Distance <= 150 then
+					if Hiding == false then
+						Hiding = true
+						HidingWithPinkie = true
+						CurrentHidingSpotPosition.CFrame = HumRoot.CFrame
+
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,150,0))
+						wait(0.1)
+						HumRoot.Anchored = true
+					end
+				else
+					local Distance2 = (CurrentHidingSpotPosition.Position - Pinkie.Position).Magnitude
+					if Distance2 >= 150 then
+						if Hiding == true then
+							Hiding = false
+							HidingWithPinkie = false
+							
+							HumRoot.Anchored = false
+							wait(0.1)
+							CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+							Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						end
+					end
+				end
+
+				if PinkieHasImage == false then
+					PinkieHasImage = true
+
+					local Bil = Instance.new("BillboardGui")
+					Bil.Parent = Pinkie
+					Bil.Size = UDim2.new(30,0,30,0)
+					Bil.ResetOnSpawn = true
+					Bil.AlwaysOnTop = true
+					Bil.MaxDistance = math.huge
+
+					local image = Instance.new("ImageLabel")
+					image.Parent = Bil
+					image.Size = UDim2.new(1,0,1,0)
+					image.Image = Images.PinkieNormal
+					image.BorderSizePixel = 0
+				end
+
+			else
+				if Hiding == true then
+					if HidingWithPinkie == true then
+						Hiding = false
+
+						HumRoot.Anchored = false
+						wait(0.1)
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						PinkieHasImage = false
+					end
+				end
+			end
+			
+			if workspace:FindFirstChild("Pandemonium") then
+
+				local Pandemonium = workspace:FindFirstChild("Pandemonium")
+				local Distance = (HumRoot.Position - Pandemonium.Position).Magnitude
+				if Distance <= 150 then
+					if Hiding == false then
+						Hiding = true
+						HidingWithPandemonium = true
+						CurrentHidingSpotPosition.CFrame = HumRoot.CFrame
+
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,150,0))
+						wait(0.1)
+						HumRoot.Anchored = true
+					end
+				else
+					local Distance2 = (CurrentHidingSpotPosition.Position - Pandemonium.Position).Magnitude
+					if Distance2 >= 150 then
+						if Hiding == true then
+							Hiding = false
+							HidingWithPandemonium = false
+
+							HumRoot.Anchored = false
+							wait(0.1)
+							CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+							Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						end
+					end
+				end
+
+				if PandemoniumHasImage == false then
+					PandemoniumHasImage = true
+
+					local Bil = Instance.new("BillboardGui")
+					Bil.Parent = Pandemonium
+					Bil.Size = UDim2.new(30,0,30,0)
+					Bil.ResetOnSpawn = true
+					Bil.AlwaysOnTop = true
+					Bil.MaxDistance = math.huge
+
+					local image = Instance.new("ImageLabel")
+					image.Parent = Bil
+					image.Size = UDim2.new(1,0,1,0)
+					image.Image = Images.PandemoniumNormal
+					image.BorderSizePixel = 0
+				end
+
+			else
+				if Hiding == true then
+					if HidingWithPandemonium == true then
+						Hiding = false
+
+						HumRoot.Anchored = false
+						wait(0.1)
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						PandemoniumHasImage = false
+					end
+				end
+			end
+			
+			if workspace:FindFirstChild("Froger") then
+
+				local Froger = workspace:FindFirstChild("Froger")
+				local Distance = (HumRoot.Position - Froger.Position).Magnitude
+				if Distance <= 150 then
+					if Hiding == false then
+						Hiding = true
+						HidingWithFroger = true
+						CurrentHidingSpotPosition.CFrame = HumRoot.CFrame
+
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,150,0))
+						wait(0.1)
+						HumRoot.Anchored = true
+					end
+				else
+					local Distance2 = (CurrentHidingSpotPosition.Position - Froger.Position).Magnitude
+					if Distance2 >= 150 then
+						if Hiding == true then
+							Hiding = false
+							HidingWithFroger = false
+
+							HumRoot.Anchored = false
+							wait(0.1)
+							CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+							Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						end
+					end
+				end
+
+				if FrogerHasImage == false then
+					FrogerHasImage = true
+
+					local Bil = Instance.new("BillboardGui")
+					Bil.Parent = Froger
+					Bil.Size = UDim2.new(30,0,30,0)
+					Bil.ResetOnSpawn = true
+					Bil.AlwaysOnTop = true
+					Bil.MaxDistance = math.huge
+
+					local image = Instance.new("ImageLabel")
+					image.Parent = Bil
+					image.Size = UDim2.new(1,0,1,0)
+					image.Image = Images.FrogerNormal
+					image.BorderSizePixel = 0
+				end
+
+			else
+				if Hiding == true then
+					if HidingWithFroger == true then
+						Hiding = false
+
+						HumRoot.Anchored = false
+						wait(0.1)
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						FrogerHasImage = false
+					end
+				end
+			end
+			
+			if workspace:FindFirstChild("Blitz") then
+
+				local Blitz = workspace:FindFirstChild("Blitz")
+				local Distance = (HumRoot.Position - Blitz.Position).Magnitude
+				if Distance <= 150 then
+					if Hiding == false then
+						Hiding = true
+						HidingWithBlitz = true
+						CurrentHidingSpotPosition.CFrame = HumRoot.CFrame
+
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,150,0))
+						wait(0.1)
+						HumRoot.Anchored = true
+					end
+				else
+					local Distance2 = (CurrentHidingSpotPosition.Position - Blitz.Position).Magnitude
+					if Distance2 >= 150 then
+						if Hiding == true then
+							Hiding = false
+							HidingWithBlitz = false
+
+							HumRoot.Anchored = false
+							wait(0.1)
+							CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+							Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						end
+					end
+				end
+
+				if BlitzHasImage == false then
+					BlitzHasImage = true
+
+					local Bil = Instance.new("BillboardGui")
+					Bil.Parent = Blitz
+					Bil.Size = UDim2.new(30,0,30,0)
+					Bil.ResetOnSpawn = true
+					Bil.AlwaysOnTop = true
+					Bil.MaxDistance = math.huge
+
+					local image = Instance.new("ImageLabel")
+					image.Parent = Bil
+					image.Size = UDim2.new(1,0,1,0)
+					image.Image = Images.BlitzNormal
+					image.BorderSizePixel = 0
+				end
+
+			else
+				if Hiding == true then
+					if HidingWithBlitz == true then
+						Hiding = false
+
+						HumRoot.Anchored = false
+						wait(0.1)
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						BlitzHasImage = false
+					end
+				end
+			end
+			
+			if workspace:FindFirstChild("Chainsmoker") then
+
+				local Chainsmoker = workspace:FindFirstChild("Chainsmoker")
+				local Distance = (HumRoot.Position - Chainsmoker.Position).Magnitude
+				if Distance <= 150 then
+					if Hiding == false then
+						Hiding = true
+						HidingWithChainsmoker = true
+						CurrentHidingSpotPosition.CFrame = HumRoot.CFrame
+
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,150,0))
+						wait(0.1)
+						HumRoot.Anchored = true
+					end
+				else
+					local Distance2 = (CurrentHidingSpotPosition.Position - Chainsmoker.Position).Magnitude
+					if Distance2 >= 150 then
+						if Hiding == true then
+							Hiding = false
+							HidingWithChainsmoker = false
+
+							HumRoot.Anchored = false
+							wait(0.1)
+							CurrentHidingSpotPosition.Position = Vector3.new(0,0,0)
+							Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						end
+					end
+				end
+
+				if ChainsmokerHasImage == false then
+					ChainsmokerHasImage = true
+
+					local Bil = Instance.new("BillboardGui")
+					Bil.Parent = Chainsmoker
+					Bil.Size = UDim2.new(30,0,30,0)
+					Bil.ResetOnSpawn = true
+					Bil.AlwaysOnTop = true
+					Bil.MaxDistance = math.huge
+
+					local image = Instance.new("ImageLabel")
+					image.Parent = Bil
+					image.Size = UDim2.new(1,0,1,0)
+					image.Image = Images.ChainsmokerNormal
+					image.BorderSizePixel = 0
+				end
+
+			else
+				if Hiding == true then
+					if HidingWithChainsmoker == true then
+						Hiding = false
+
+						HumRoot.Anchored = false
+						wait(0.1)
+						Character:SetPrimaryPartCFrame(HumRoot.CFrame + Vector3.new(0,-147,0))
+						ChainsmokerHasImage = false
+					end
+				end
+			end
+		end
+	end
+end
